@@ -51,11 +51,48 @@ export const getLaunches =  async (offset:number = 0, limit:number = 12) => {
 }
 
 export const getLaunch = async (id:number) => {
-  const {data} await client.query({
+  const {data} = await client.query({
     query: gql`
       {
-        
+        launch(id: ${id}) {
+          details
+          id
+          launch_date_local
+          launch_success
+          launch_year
+          links {
+            article_link
+            flickr_images
+            mission_patch_small
+            presskit
+            reddit_campaign
+            video_link
+            wikipedia
+          }
+          mission_name
+          rocket {
+            fairings {
+              recovered
+              recovery_attempt
+              reused
+              ship
+            }
+            rocket {
+              id
+              wikipedia
+              stages
+              payload_weights {
+                kg
+              }
+              name
+              mass {
+                kg
+              }
+            }
+          }
+        }
       }
     `
-  })
+  });
+  return data
 }
