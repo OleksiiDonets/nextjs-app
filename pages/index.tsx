@@ -3,6 +3,7 @@ import { GridCard } from '../components/GridCard/GridCard'
 import { Card } from '../components/Card/Card';
 import { Button } from '../components/Button/Button';
 import { useState,useEffect } from 'react';
+import { useInfiniteScroll } from '../hooks/hooks';
 import styles from '../styles/Home.module.css';
 
 export async function getServerSideProps() {
@@ -16,26 +17,31 @@ export async function getServerSideProps() {
 const Home = ({ launches }:{launches: ILaunch[]}) => {
   const [offset, setOffset] = useState(13);
   const [ array, setArray] = useState([...launches]);
+  const {statusLoad, setStatusLoad, setStatusObservebale} = useInfiniteScroll('card_elem');
   useEffect(() => {
-    fetchMore()
-    .then(repsonse => {
-      setArray([...array, ...repsonse])
-    }) 
-  },[offset]);
+    if(statusLoad){
+      fetchMore()
+      .then(response => {
+        setArray([...array, ...response])
+        if(response.length>0){
+          setStatusObservebale(true)
+          setStatusLoad(false)
+        }
+      })
+    }
+  },[statusLoad]);
 
   const fetchMore = async () => {
-    const elem = await getLaunches(offset);
-     return elem
-  };
-  const loadMore = () => {
     setOffset(offset+13)
+    const elem = await getLaunches(offset);
+    return elem
   };
   return (
     <>
       <GridCard>
         { 
           array.length > 0 ? (
-            array.map( (launch, index) => (
+            array.map((launch, index) => (
               <Card 
                 key={index}
                 idLaunch={launch.id}
@@ -50,9 +56,6 @@ const Home = ({ launches }:{launches: ILaunch[]}) => {
          
         }
       </GridCard>
-      <div className={styles.load_more}>
-        <Button variant='outline' label='Load more' onClick={loadMore}/>
-      </div>
     </>
   )
 }

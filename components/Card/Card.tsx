@@ -36,7 +36,8 @@ export const Card = ({
     [styles.card]: true,
     [styles.card_small]: size === 'small',
     [styles.card_hoverable]: hoverable,
-    [styles.card_bordered]: bordered
+    [styles.card_bordered]: bordered,
+    card_elem:true
   });
 
   return (
