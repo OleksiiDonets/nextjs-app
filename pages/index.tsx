@@ -24,11 +24,12 @@ const Home = ({ launches }:{launches: ILaunch[]}) => {
   },[offset]);
 
   const fetchMore = async () => {
-    const elem = await getLaunches(10);
+    const elem = await getLaunches(offset);
      return elem
   };
   const loadMore = () => {
-    setOffset(offset+10)
+    setOffset(offset+13)
+    console.log(offset)
   };
   return (
     <>
