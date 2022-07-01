@@ -14,7 +14,7 @@ export async function getServerSideProps() {
   }
 }
 const Home = ({ launches }:{launches: ILaunch[]}) => {
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(13);
   const [ array, setArray] = useState([...launches]);
   useEffect(() => {
     fetchMore()
@@ -29,7 +29,6 @@ const Home = ({ launches }:{launches: ILaunch[]}) => {
   };
   const loadMore = () => {
     setOffset(offset+13)
-    console.log(offset)
   };
   return (
     <>
