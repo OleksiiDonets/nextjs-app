@@ -1,6 +1,4 @@
-import classNames from 'classnames';
 import styles from './Header.module.css';
-const cx = classNames.bind(styles);
 
 interface IHeader {
   children: JSX.Element | JSX.Element[],
@@ -10,13 +8,9 @@ interface IHeader {
 export const Header = ({
   children,
 }:IHeader) => {
-
-  const headerClasses = cx({
-    [styles.header_container]: true,
-  })
   return (
-    <header className={headerClasses}>
-      <div className='header_container__wrap'>
+    <header className={styles.header_container}>
+      <div className={styles.header_container__wrap}>
         {
           children
         }

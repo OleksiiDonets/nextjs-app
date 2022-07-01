@@ -18,15 +18,40 @@ export interface ILaunch {
   details?: string | null,
   id: string
 }
-
-export interface IData {
-  launches: ILaunch[];
-};
-
-export const getLaunches =  async (offset:number = 0, limit:number = 12) => {
-  const { data }: {data:IData} = await client.query({
+export interface IDetailLaunch {
+  details?: string | null;
+  id: string;
+  launch_date_utc: string;
+  launch_success: boolean;
+  launch_year: string;
+  links: LaunchLinks;
+  mission_name: string;
+  rocket:{
+    rocket:LaunchRocket
+  };
+}
+interface LaunchRocket {
+  id: string;
+  mass: {
+    kg: number;
+  }
+  name: string;
+  wikipedia: string;
+}
+interface LaunchLinks {
+  article_link?: string;
+  flickr_images: string[] | any[];
+  mission_path_small: string;
+  presskit: string;
+  reddit_campaign?: string | null;
+  video_link: string;
+  wikipedia: string;
+  
+}
+export const getLaunches =  async (offset:number = 0) => {
+  const { data:{launches} }: {data:{launches: ILaunch[]}} = await client.query({
     query: gql`{
-    launches(offset: ${offset}, limit: ${limit}) {
+    launches(offset: ${offset}, limit:12) {
       launch_date_utc
       launch_site {
         site_id
@@ -47,17 +72,18 @@ export const getLaunches =  async (offset:number = 0, limit:number = 12) => {
   }
     `
   })
-  return data
+  
+  return launches
 }
 
-export const getLaunch = async (id:number) => {
+export const getLaunch = async (id:string) => {
   const {data} = await client.query({
     query: gql`
       {
         launch(id: ${id}) {
           details
           id
-          launch_date_local
+          launch_date_utc
           launch_success
           launch_year
           links {
@@ -71,19 +97,10 @@ export const getLaunch = async (id:number) => {
           }
           mission_name
           rocket {
-            fairings {
-              recovered
-              recovery_attempt
-              reused
-              ship
-            }
             rocket {
               id
               wikipedia
               stages
-              payload_weights {
-                kg
-              }
               name
               mass {
                 kg
@@ -94,5 +111,5 @@ export const getLaunch = async (id:number) => {
       }
     `
   });
-  return data
+  return data   
 }

@@ -7,6 +7,9 @@
 .header_container__wrap nav ul {
   @apply flex flex-row justify-around 
 }
+.header_container__wrap span{
+  @apply cursor-pointer
+}
 .header_container__wrap nav ul li {
   @apply uppercase mr-4 last-of-type:mr-0
 }

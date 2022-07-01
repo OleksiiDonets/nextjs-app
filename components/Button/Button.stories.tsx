@@ -1,4 +1,5 @@
 import React from 'react'
+import { withReactContext } from 'storybook-react-context';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from './Button';
 
@@ -14,3 +15,4 @@ Default.args = {
   variant: 'primary',
   size: 'medium'
 }
+Default.decorators = [withReactContext];

@@ -8,7 +8,7 @@
   @apply bg-amber-700 text-white hover:bg-amber-600 
 }
 .outline {
-  @apply bg-opacity-100 text-slate-700 border-[2px] border-current
+  @apply bg-opacity-100 text-slate-700 border-[2px] border-current hover:bg-slate-700 hover:text-white
 }
 .link {
   @apply bg-transparent text-slate-700 border-none  hover:underline 

@@ -1,39 +1,59 @@
-import type { NextPage } from 'next'
 import { getLaunches, ILaunch } from './api/apiLaunches'
 import { GridCard } from '../components/GridCard/GridCard'
 import { Card } from '../components/Card/Card';
+import { Button } from '../components/Button/Button';
+import { useState,useEffect } from 'react';
+import styles from '../styles/Home.module.css';
 
 export async function getServerSideProps() {
-  const data = await getLaunches();
+  const launches = await getLaunches();
   return {
     props: {
-      launches:data.launches
+      launches:launches
     }
   }
 }
 const Home = ({ launches }:{launches: ILaunch[]}) => {
-  console.log(launches)
+  const [offset, setOffset] = useState(0);
+  const [ array, setArray] = useState([...launches]);
+  useEffect(() => {
+    fetchMore()
+    .then(repsonse => {
+      setArray([...array, ...repsonse])
+    }) 
+  },[offset]);
 
+  const fetchMore = async () => {
+    const elem = await getLaunches(10);
+     return elem
+  };
+  const loadMore = () => {
+    setOffset(offset+10)
+  };
   return (
-    <GridCard>
-      { 
-        launches.length > 0 ? (
-          launches.map( (launch, index) => (
-            <Card 
-              key={launch.id}
-              idLaunch={launch.id}
-              cover={launch.links?.mission_patch}
-              title={launch.launch_site?.site_name_long}
-              description={launch.details}
-              hoverable
-            >
-            </Card>
-          ))
-        ): (' Loading ...')
-       
-      }
-    </GridCard>
-   
+    <>
+      <GridCard>
+        { 
+          array.length > 0 ? (
+            array.map( (launch, index) => (
+              <Card 
+                key={index}
+                idLaunch={launch.id}
+                cover={launch.links?.mission_patch}
+                title={launch.launch_site?.site_name_long}
+                description={launch.details}
+                hoverable
+              >
+              </Card>
+            ))
+          ): (' Loading ...')
+         
+        }
+      </GridCard>
+      <div className={styles.load_more}>
+        <Button variant='outline' label='Load more' onClick={loadMore}/>
+      </div>
+    </>
   )
 }
 

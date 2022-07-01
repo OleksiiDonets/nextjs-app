@@ -1,23 +1,19 @@
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router'
-import Head from 'next/head';
 import { LaunchDetail } from '../../components/LaunchDetail/LaunchDetail';
-import { getLaunch } from '../api/apiLaunches';
+import { getLaunch, IDetailLaunch } from '../api/apiLaunches';
 
 
-export async function getServerSideProps() {
-  const data = await getLaunch(13);
+export async function getServerSideProps({params:{id}}:{params:{id:string}}) {
+
+  const {launch}:{launch: IDetailLaunch} = await getLaunch(id);
   return {
     props: {
-      launch:data.launch
+      launch:launch
     }
   }
 }
-const Launch = (props) => {
-  const {query:{id}} = useRouter();
-  console.log(props)
+const Launch = ({launch}:{launch: IDetailLaunch}) => {
   return (
-    <LaunchDetail />
+    <LaunchDetail launch={launch}/>
 
   )
 }
