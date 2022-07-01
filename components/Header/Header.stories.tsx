@@ -22,6 +22,3 @@ const Template: ComponentStory<typeof Header> = (args) => <Header {...args}>
   </nav>
 </Header>;
 export const Default = Template.bind({});
-Default.args = {
-  variant: 'primary'
-}
