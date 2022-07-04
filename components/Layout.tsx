@@ -21,7 +21,10 @@ export const Layout = ({children}: ILayout) => {
           
         </div>
       </Header>
+      <main className='main'>
       {children}
+      </main>
+     
     </>
   )
 }

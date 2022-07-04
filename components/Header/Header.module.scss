@@ -1,0 +1,17 @@
+.header {
+  &_container{
+    @apply flex bg-gray-800 max-w-full p-5 rounded-b-md mx-auto px-2 text-white sm:px-6 lg:px-8 ;
+    &__wrap{
+      @apply flex justify-between flex-row w-full items-center;
+      nav ul{
+        @apply flex flex-row justify-around ;
+        li{
+          @apply uppercase mr-4 last-of-type:mr-0;
+        }
+      }
+      span{
+        @apply cursor-pointer
+      }
+    }
+  }
+}

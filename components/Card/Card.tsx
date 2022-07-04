@@ -1,6 +1,6 @@
 import Link from "next/link";
 import classNames from "classnames";
-import styles from "./Card.module.css";
+import styles from "./Card.module.scss";
 import Image from "next/image"
 import { Button } from "../Button/Button";
 
@@ -51,7 +51,9 @@ export const Card = ({
       }
       <div className={styles.card_body}>
         <div className={styles.card_title}>
+
           { title }
+
         </div>
         <div className={styles.card_descritpion}>
           { description }

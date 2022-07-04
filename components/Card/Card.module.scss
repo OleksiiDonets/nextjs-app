@@ -1,0 +1,38 @@
+.card{
+  $card: &;
+  @apply flex flex-col  pt-5 text-sm justify-between box-border text-black shadow-sm rounded-md w-full;
+  &_title{
+    @apply py-3 truncate text-lg font-bold w-[200px] sm:w-[300px] md:w-full;
+  }
+  &_body{
+    @apply p-6 w-full;
+  }
+  &_hoverable{
+    @apply border-[1px] transition-shadow cursor-pointer hover:shadow-lg;
+    &:hover #{$card}_more{
+        @apply opacity-100;
+    }
+  }
+  &_bordered {
+    @apply border-[1px]
+  }
+  &_cover{
+    @apply relative h-[315px] w-64 my-0 mx-auto pt-3 sm:w-64 md:w-64;
+  }
+  &_description{
+    @apply line-clamp-3;
+  }
+  &_more{
+    @apply w-full flex self-end justify-center font-bold text-lg opacity-0 transition-opacity;
+  }
+  &_small {
+    #{$card}_title{
+      @apply p-2;
+    }
+    #{$card}_title{
+      .wrap{
+        @apply p-1
+      }
+    }
+  }
+}

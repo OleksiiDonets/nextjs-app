@@ -1,4 +1,4 @@
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 interface IHeader {
   children: JSX.Element | JSX.Element[],

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import styles from './GridCard.module.css';
+import styles from './GridCard.module.scss';
 
 const cx = classnames.bind(styles);
 interface IGrid {

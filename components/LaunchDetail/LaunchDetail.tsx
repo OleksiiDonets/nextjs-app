@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import styles from './LaunchDetail.module.css';
+import styles from './LaunchDetail.module.scss';
 import { IDetailLaunch } from '../../pages/api/apiLaunches';
 import { Slider } from "../Slider/Slider";
 
@@ -49,9 +49,9 @@ export const LaunchDetail = ({launch} :{ launch:IDetailLaunch }) => {
             }
             {
               launch.links.video_link ? (
-                <li>
+                <li className={styles.detail_info__video}>
                   <span>Video on youtube</span>
-                  <iframe width="50%" height="500" src={videoLink} frameBorder="0" allowFullScreen></iframe>
+                  <iframe width="100%" height="100%" src={videoLink} frameBorder="0" allowFullScreen></iframe>
 
                 </li>
               ):('')
