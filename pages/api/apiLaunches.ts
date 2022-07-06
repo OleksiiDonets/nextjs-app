@@ -52,6 +52,8 @@ export const getLaunches =  async (offset:number = 0) => {
   const { data:{launches} }: {data:{launches: ILaunch[]}} = await client.query({
     query: gql`{
     launches(offset: ${offset}, limit:12) {
+      id
+      details
       launch_date_utc
       launch_site {
         site_id
@@ -65,12 +67,8 @@ export const getLaunches =  async (offset:number = 0) => {
       }
       mission_id
       mission_name
-
-      details
-      id
     }
-  }
-    `
+  }`
   })
   
   return launches
@@ -81,8 +79,8 @@ export const getLaunch = async (id:string) => {
     query: gql`
       {
         launch(id: ${id}) {
-          details
           id
+          details
           launch_date_utc
           launch_success
           launch_year
@@ -111,5 +109,5 @@ export const getLaunch = async (id:string) => {
       }
     `
   });
-  return data   
+  return data
 }

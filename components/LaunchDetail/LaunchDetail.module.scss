@@ -32,17 +32,19 @@
   &_info{
     ul{
       li{
-        @apply my-8;
+        @apply my-8 font-semibold	;
         a{
-          @apply font-light text-slate-700 underline pl-3;
+          @apply font-normal text-slate-700 underline pl-3;
         }
       }
     }
     &__video{
-      @apply  sm:h-[35vh] md:h-[40vh] lg:h-[50vh];
+      @apply h-[310px] sm:h-[45vh] md:h-[50vh] lg:h-[60vh];
       span{
-
         @apply mb-4 inline-block;
+      }
+      iframe{
+        @apply m-auto w-full md:w-4/5 lg:w-3/5;
       }
     }
   }
