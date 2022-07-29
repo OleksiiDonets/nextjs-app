@@ -22,14 +22,14 @@ export const getServerSideProps = async () => {
 
 
 
-const Home = () => {
+const Home = (props) => {
   const {statusLoad, setStatusLoad, setStatusObservebale} = useInfiniteScroll('card_elem');
   const { loading, error, data, fetchMore  } = useQuery(GET_LAUNCHES,{
     variables:{
       offset:0
     }
   });
-
+  console.log(props)
   useEffect(() => {
     if(statusLoad){
       fetchMore({

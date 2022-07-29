@@ -49,69 +49,44 @@ interface LaunchLinks {
   wikipedia: string;
   
 }
-export const getLaunches =  async (offset:number = 0) => {
-  const { data:{launches} }: {data:{launches: ILaunch[]}} = await client.query({
-    query: gql`{
-    launches(offset: ${offset}, limit:12) {
-      id
-      details
-      launch_date_utc
-      launch_site {
-        site_id
-        site_name
-        site_name_long
-      }
-      launch_success
-      launch_year
-      links {
-        mission_patch
-      }
-      mission_id
-      mission_name
-    }
-  }`
-  })
-  
-  return launches
-}
 
-export const getLaunch = async (id:string) => {
-  const {data} = await client.query({
-    query: gql`
-      {
-        launch(id: ${id}) {
-          id
-          details
-          launch_date_utc
-          launch_success
-          launch_year
-          links {
-            article_link
-            flickr_images
-            mission_patch_small
-            presskit
-            reddit_campaign
-            video_link
-            wikipedia
-          }
-          mission_name
-          rocket {
-            rocket {
-              id
-              wikipedia
-              stages
-              name
-              mass {
-                kg
-              }
-            }
-          }
-        }
-      }
-    `
-  });
-  return data
-}
+// export const getLaunch = async (id:string) => {
+//   const {data} = await client.query({
+//     query: gql`
+//       {
+//         launch(id: ${id}) {
+//           id
+//           details
+//           launch_date_utc
+//           launch_success
+//           launch_year
+//           links {
+//             article_link
+//             flickr_images
+//             mission_patch_small
+//             presskit
+//             reddit_campaign
+//             video_link
+//             wikipedia
+//           }
+//           mission_name
+//           rocket {
+//             rocket {
+//               id
+//               wikipedia
+//               stages
+//               name
+//               mass {
+//                 kg
+//               }
+//             }
+//           }
+//         }
+//       }
+//     `
+//   });
+//   return data
+// }
 
 export const GET_LAUNCHES = gql`
   query GetLaunches($offset: Int!){
