@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
 
 export const useInfiniteScroll = (id:string) => {
   const [ statusLoad, setStatusLoad ] = useState(false);
   const [statusObservebale, setStatusObservebale] = useState(true);
-  if (process.browser) {
+  if(typeof window !== 'undefined'){
     const observebale = document.querySelector(`.${id}:last-child`)
     const observer = new IntersectionObserver((entry, observer) => {
       if(entry[0].isIntersecting){

@@ -1,5 +1,6 @@
-import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+// import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
+// import client from "../../lib/apollo-client";
 
 export interface ILaunch {
   launch_date_utc?:string
@@ -111,3 +112,24 @@ export const getLaunch = async (id:string) => {
   });
   return data
 }
+
+export const GET_LAUNCHES = gql`
+  query GetLaunches($offset: Int!){
+    launches(offset: $offset, limit:12){
+      id
+        details
+        launch_date_utc
+        launch_site {
+          site_id
+          site_name
+          site_name_long
+        }
+        launch_success
+        launch_year
+        links {
+          mission_patch
+        }
+        mission_id
+        mission_name
+    }
+  }`

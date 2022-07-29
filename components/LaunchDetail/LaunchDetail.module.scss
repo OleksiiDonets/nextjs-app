@@ -1,12 +1,12 @@
 .detail{
   &_container{
-    @apply grid gap-4 p-6;
+    @apply grid gap-4 p-6 grid-cols-2;
   }
   &_slider{
-    @apply flex flex-col items-center w-full justify-center p-4 rounded-md shadow-md;
+    @apply flex flex-col items-center  justify-center p-4 rounded-md shadow-md col-start-1 col-end-3;
   }
   &_content{
-    @apply p-4 rounded-md shadow-md;
+    @apply p-4 rounded-md shadow-md ;
     h1{
       @apply text-lg font-bold text-center py-4 uppercase;
     }

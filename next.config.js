@@ -5,7 +5,13 @@ const nextConfig = {
     images: {
       unoptimized: true,
     },
-  },
+    publicRuntimeConfig: {
+      
+      staticFolder: '/static',
+
+      // baseQueryUrl: process.env.baseQueryUrl
+    }
+  }
 }
 
 module.exports = nextConfig
