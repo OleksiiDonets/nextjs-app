@@ -5,12 +5,9 @@ const nextConfig = {
     images: {
       unoptimized: true,
     },
-    publicRuntimeConfig: {
-      
-      staticFolder: '/static',
-
-      // baseQueryUrl: process.env.baseQueryUrl
-    }
+  },
+  env: {
+    API_HOST: 'https://api.spacexdata.com/v4'
   }
 }
 

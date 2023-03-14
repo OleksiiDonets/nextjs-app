@@ -1,15 +1,7 @@
 import classNames from 'classnames';
-import styles from './Button.module.scss';
-
+import styles from './Button.module.css';
+import { IButton } from '../../common/types';
 let cx = classNames.bind(styles);
-
-interface IButton {
-  variant?: 'primary' | 'secondary' | 'outline' | 'link';
-  label: string;
-  size?: 'small' | 'medium' | 'large';
-  onClick?: () => void
-}
-
 
 export const Button = ({
   variant = 'primary',

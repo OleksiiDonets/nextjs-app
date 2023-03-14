@@ -1,0 +1,25 @@
+.button {
+  @apply rounded-md py-2 px-5 transition-colors ease-linear delay-75 outline-none border-[2px] border-transparent
+}
+.primary {
+  @apply bg-slate-700  text-white  hover:bg-slate-600 ;
+}
+.secondary {
+  @apply bg-amber-700 text-white hover:bg-amber-600 
+}
+.outline {
+  @apply bg-opacity-100 text-slate-700 border-[2px] border-current hover:bg-slate-700 hover:text-white
+}
+.link {
+  @apply bg-transparent text-slate-700 border-none  hover:underline 
+}
+.small {
+  @apply px-2 py-1
+}
+
+.medium {
+  @apply px-10 py-2
+}
+.large {
+  @apply px-20 py-2
+}

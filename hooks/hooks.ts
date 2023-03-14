@@ -1,27 +1,34 @@
-import { useState, useEffect } from "react"
+import { useState } from "react";
+import axios from "axios";
+import { API_URL } from "../config";
+import {IFilter} from '../common/types';
 
+export const useFilter = () => {
+  const [filterValue, _updateFilter] = useState<IFilter>({
+    "sucess": "asc",
+  });
 
-export const useInfiniteScroll = (id:string) => {
-  const [ statusLoad, setStatusLoad ] = useState(false);
-  const [statusObservebale, setStatusObservebale] = useState(true);
-  if(typeof window !== 'undefined'){
-    const observebale = document.querySelector(`.${id}:last-child`)
-    const observer = new IntersectionObserver((entry, observer) => {
-      if(entry[0].isIntersecting){
-        setStatusLoad(true);
-        setStatusObservebale(false);
-        observer.unobserve(entry[0].target)
-      }
-    },{
-    });
-    if(observebale && statusObservebale){
-      observer.observe(observebale)
-    }
+  const updateFilter = (filter:IFilter): void => {
+    const newFilter = Object.assign({}, filter); 
+    _updateFilter(newFilter)
   }
   return {
-    statusLoad,
-    statusObservebale,
-    setStatusLoad,
-    setStatusObservebale,
+    models: {...filterValue},
+    operations: {updateFilter}
   }
+}
+
+
+export const loadLaunches = async (pageParam:number, sortParam: IFilter) => {
+  debugger;
+  const response = await axios.post(`${API_URL}/launches/query`, {
+    query: {
+      upcoming: false
+    },
+    options: {
+      page:pageParam,
+      sort: sortParam
+    }
+  })
+  return response.data
 }

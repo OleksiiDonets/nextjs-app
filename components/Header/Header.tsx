@@ -1,8 +1,6 @@
-import styles from './Header.module.scss';
+import styles from './Header.module.css';
+import { IHeader } from '../../common/types'
 
-interface IHeader {
-  children: JSX.Element | JSX.Element[],
-}
 
 
 export const Header = ({

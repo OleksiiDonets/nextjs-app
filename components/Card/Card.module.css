@@ -1,0 +1,33 @@
+.card{
+  @apply flex flex-col  pt-5 text-sm justify-between box-border text-black shadow-sm rounded-md w-full max-w-[545px];
+}
+.card_title{
+    @apply py-3 truncate text-lg font-bold w-[200px] sm:w-[300px] md:w-full;
+}
+.card_body{
+    @apply p-6 w-full;
+}
+.card_hoverable{
+  @apply border-[1px] transition-shadow cursor-pointer hover:shadow-lg;
+}
+.card_hoverable:hover .card_more{
+  @apply opacity-100;
+}
+.card_bordered {
+  @apply border-[1px]
+}
+.card_cover{
+  @apply relative h-[315px] w-64 my-0 mx-auto pt-3 sm:w-64 md:w-64;
+}
+.card_description{
+  @apply line-clamp-3;
+}
+.card_more {
+  @apply w-full flex self-end justify-center font-bold text-lg opacity-0 transition-opacity;
+}
+.card_small .card_title {
+  @apply p-2;
+}
+.card_small .card_title .wrap {
+  @apply p-1
+}

@@ -1,20 +1,17 @@
 import { LaunchDetail } from '../../components/LaunchDetail/LaunchDetail';
-import { getLaunch, IDetailLaunch } from '../api/apiLaunches';
-
-
-export async function getServerSideProps({params:{id}}:{params:{id:string}}) {
-
-  const {launch}:{launch: IDetailLaunch} = await getLaunch(id);
-  return {
-    props: {
-      launch:launch
-    }
+import { IDetailLaunch } from '../../common/types';
+import { GetServerSidePropsContext } from 'next';
+import { API_URL } from '../../config';
+export async function getServerSideProps({req, query:{id}}:{req:GetServerSidePropsContext,query:{id:Number}}) {
+  const res = await fetch(`${API_URL}/launches/${id}`);
+  const data = await res.json()
+  return{
+    props:{launch:data}
   }
 }
-const Launch = ({launch}:{launch: IDetailLaunch}) => {
-  return (
+const Launch =({launch}:{launch:any}) =>{
+  return(
     <LaunchDetail launch={launch}/>
-
   )
 }
 
